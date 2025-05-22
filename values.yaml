@@ -1,0 +1,26 @@
+replicaCount: 3
+
+image:
+  repository: blackmine57/monerod
+  tag: latest
+  pullPolicy: IfNotPresent
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+resources: {}
+
+service:
+  type: ClusterIP
+  port: 28081
+
+args:
+  - "--testnet"
+  - "--non-interactive"
+  - "--confirm-external-bind"
+  - "--rpc-bind-ip=0.0.0.0"
+  - "--rpc-bind-port=28081"
+  - "--data-dir=/monero/data"

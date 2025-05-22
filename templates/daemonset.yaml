@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: monero-testnet
+spec:
+  selector:
+    matchLabels:
+      app: monero-testnet
+  template:
+    metadata:
+      labels:
+        app: monero-testnet
+    spec:
+      nodeSelector:
+        monerod: "true"
+      containers:
+        - name: monerod
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          args: {{ toJson .Values.args }}
+          ports:
+            - containerPort: 28081
+          volumeMounts:
+            - name: monero-data
+              mountPath: /monero/data
+      volumes:
+        - name: monero-data
+          hostPath:
+            path: /var/lib/monerod-{{ .NodeName | default "node" }}
+            type: DirectoryOrCreate
