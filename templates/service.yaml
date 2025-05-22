@@ -4,7 +4,7 @@ metadata:
   name: monero-testnet
 spec:
   selector:
-    app: monero
+    app: monero-testnet
   ports:
     - protocol: TCP
       port: 28081
