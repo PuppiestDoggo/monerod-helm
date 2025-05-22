@@ -25,5 +25,5 @@ spec:
       volumes:
         - name: monero-data
           hostPath:
-            path: /var/lib/monerod-{{ .NodeName | default "node" }}
+            path: /var/lib/monerod
             type: DirectoryOrCreate
