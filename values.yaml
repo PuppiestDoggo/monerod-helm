@@ -3,13 +3,7 @@ replicaCount: 3
 image:
   repository: blackmine57/monerod
   tag: latest
-  pullPolicy: IfNotPresent
-
-persistence:
-  enabled: true
-  storageClass: ""
-  accessMode: ReadWriteOnce
-  size: 10Gi
+  pullPolicy: Always
 
 resources: {}
 
@@ -18,7 +12,7 @@ service:
   port: 28081
 
 command:
-  - "monero-wallet-rpc"
+  - "monerod"
 args:
   - "--testnet"
   - "--non-interactive"
