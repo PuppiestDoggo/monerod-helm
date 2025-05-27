@@ -17,6 +17,8 @@ service:
   type: ClusterIP
   port: 28081
 
+command:
+  - "monero-wallet-rpc"
 args:
   - "--testnet"
   - "--non-interactive"

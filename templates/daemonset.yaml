@@ -16,6 +16,7 @@ spec:
       containers:
         - name: monerod
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: {{ toJson .Values.command }}
           args: {{ toJson .Values.args }}
           ports:
             - containerPort: 28081
